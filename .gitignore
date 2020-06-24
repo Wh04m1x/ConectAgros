@@ -1,0 +1,10 @@
+/myphp-backup-files/*
+
+# Ignore all text files
+ip.log
+error.log
+send_mail.php
+*.csv
+*.pdf
+*.agr
+*.png

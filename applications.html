@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Test Hash</title>
+    </head>
+    <body>
+        <div id="opciones">
+            <a href="#formulario">Formulario</a>
+            <a href="#contacto">Contacto</a>
+            <a href="#historia">Historia</a>
+        </div>
+        <div id="sentences"></div>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script>
+
+            function hashChange() {
+
+                var myURL = "Recursos_humanos.php";
+
+                if (window.location.hash) {
+                    switch (window.location.hash) {
+                        case "#contacto": myURL = "ReleaseNotes.php"; break;
+                        case "#historia": myURL = "web/encuesta_agros.php"; break;
+                        case "#formulario":
+                        default: myURL = "Recursos_humanos"; break;
+                    }
+                }
+
+                $.ajax({ 
+                    url: myURL,
+                    dataType: 'text',
+                    success: function(data) {
+                        $("#sentences").html(data); 
+                    }, 
+                    error: function() {
+                        alert("error"); 
+                    }
+                });
+            }
+
+            $(document).ready(function(){
+                hashChange();
+                $(window).on("hashchange", function() {
+                    hashChange();
+                });
+            });
+        </script>
+    </body>
+</html>
